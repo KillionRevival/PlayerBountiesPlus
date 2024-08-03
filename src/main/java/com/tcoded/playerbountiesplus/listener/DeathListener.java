@@ -34,10 +34,16 @@ public class DeathListener implements Listener {
                 return;
             }
 
+            // Check if killer has the no_bounty_claim permission
+            if (killer.hasPermission("playerbountiesplus.no_bounty_claim")) {
+                killer.sendMessage(plugin.getLang().getColoredOrDefault("death.no-claim-permission", "You do not have permission to claim bounties."));
+                return;
+            }
+
             // Clan check
             AbstractTeamHook teamHook = this.plugin.getTeamHook();
             if (teamHook != null && teamHook.isFriendly(killer, victim)) {
-                killer.sendMessage(plugin.getLang().getColored("death.same-team"));
+                killer.sendMessage(plugin.getLang().getColoredOrDefault("death.same-team", "You cannot claim bounties on your team members."));
                 return;
             }
 
@@ -60,12 +66,12 @@ public class DeathListener implements Listener {
 
             // Announce Reward
             if (plugin.getConfig().getBoolean("bounty-claimed-announce", true)) {
-                this.plugin.getServer().broadcastMessage(
-                        plugin.getLang().getColored("death.announce-claimed")
-                                .replace("{killer}", killer.getName())
-                                .replace("{victim}", victim.getName())
-                                .replace("{bounty}", bounty.toString())
-                );
+                String announceMessage = plugin.getLang().getColoredOrDefault("death.announce-claimed",
+                                "{killer} has claimed a bounty of {bounty} on {victim}!")
+                        .replace("{killer}", killer.getName())
+                        .replace("{victim}", victim.getName())
+                        .replace("{bounty}", bounty.toString());
+                this.plugin.getServer().broadcastMessage(announceMessage);
             }
 
             // Remove bounty
@@ -73,5 +79,4 @@ public class DeathListener implements Listener {
             this.plugin.getBountyDataManager().saveBountiesAsync();
         }
     }
-
 }

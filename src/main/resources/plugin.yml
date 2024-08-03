@@ -9,10 +9,6 @@ folia-supported: true
 
 depend:
   - Vault
-softdepend:
-  - ClansLite
-  - Parties
-  - BetterTeams
   - SimpleClans
 
 commands:
@@ -31,3 +27,6 @@ permissions:
         default: true
       playerbountiesplus.command.playerbountiesplus.reload:
         default: op
+  playerbountiesplus.no_bounty_claim:
+    description: Players with this permission cannot claim bounties
+    default: false

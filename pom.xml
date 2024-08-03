@@ -6,7 +6,7 @@
 
     <groupId>com.tcoded</groupId>
     <artifactId>PlayerBountiesPlus</artifactId>
-    <version>1.4.7</version>
+    <version>1.4.8</version>
     <packaging>jar</packaging>
 
     <name>PlayerBountiesPlus</name>
@@ -129,13 +129,6 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>com.alessiodp.parties</groupId>
-            <artifactId>parties-api</artifactId>
-            <version>3.2.9</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/parties-api-3.2.9.jar</systemPath>
-        </dependency>
-        <dependency>
             <groupId>com.github.lightlibs</groupId>
             <artifactId>LegacyColorCodeParser</artifactId>
             <version>1.0.0</version>
@@ -164,11 +157,6 @@
             <artifactId>SimpleClans</artifactId>
             <version>2.15.2</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.github.SaberLLC</groupId>
-            <artifactId>Saber-Factions</artifactId>
-            <version>4.1.2-STABLE</version>
         </dependency>
     </dependencies>
 </project>

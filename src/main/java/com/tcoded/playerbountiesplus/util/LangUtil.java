@@ -48,10 +48,6 @@ public class LangUtil {
         this.lang = lang;
         Logger logger = this.plugin.getLogger();
 
-//        for (SupportedLang tmpLang : SupportedLang.values()) {
-//            plugin.saveResource("lang/" + tmpLang.name().toLowerCase() + ".yml", false);
-//        }
-
         // Resolve the path of the lang files we're going to use
         String englishFilePath = "lang/" + SupportedLang.EN_US.name().toLowerCase() + ".yml";
         String langFilePath = "lang/" + lang + ".yml";
@@ -95,8 +91,14 @@ public class LangUtil {
 
     public String getColored(String key) {
         String text = this.get(key);
+        if (text == null) return null;
         text = LegacyColorCodeParser.convertHexToLegacy('&', text);
         return ChatColor.translateAlternateColorCodes('&', text);
+    }
+
+    public String getColoredOrDefault(String key, String defaultValue) {
+        String coloredText = getColored(key);
+        return coloredText != null ? coloredText : ChatColor.translateAlternateColorCodes('&', defaultValue);
     }
 
     public String getLang() {
